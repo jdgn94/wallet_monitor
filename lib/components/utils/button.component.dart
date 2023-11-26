@@ -6,18 +6,20 @@ enum StyleButton { standard, outlined, tonal, text, plain }
 
 // ignore: must_be_immutable
 class ButtonComponent extends StatelessWidget {
-  ButtonComponent({
-    super.key,
-    required this.onTap,
-    this.buttonStyle = StyleButton.standard,
-    this.color,
-    this.colorText,
-    this.prependIcon,
-    this.appendIcon,
-    this.text,
-    this.body,
-    this.radius = 5.0,
-  });
+  ButtonComponent(
+      {super.key,
+      required this.onTap,
+      this.buttonStyle = StyleButton.standard,
+      this.color,
+      this.colorText,
+      this.prependIcon,
+      this.appendIcon,
+      this.text,
+      this.body,
+      this.radius = 5.0,
+      this.width,
+      this.height,
+      this.align = MainAxisAlignment.start});
 
   final VoidCallback onTap;
   final StyleButton buttonStyle;
@@ -28,6 +30,9 @@ class ButtonComponent extends StatelessWidget {
   final String? text;
   final Widget? body;
   final double radius;
+  final double? width;
+  final double? height;
+  final MainAxisAlignment align;
 
   final padding = const EdgeInsets.all(5);
   late BorderRadius borderRadius;
@@ -51,11 +56,11 @@ class ButtonComponent extends StatelessWidget {
 
   Color _splashTone(BuildContext context) {
     if (buttonStyle == StyleButton.text) {
-      return buttonColor.withAlpha(30);
+      return buttonColor.withAlpha(50);
     } else if (Theme.of(context).colorScheme.brightness == Brightness.dark) {
-      return Colors.white.withAlpha(10);
+      return Colors.white.withAlpha(50);
     }
-    return Colors.black.withAlpha(10);
+    return Colors.black.withAlpha(50);
   }
 
   Ink _getButtonChild(BuildContext context) {
@@ -64,6 +69,8 @@ class ButtonComponent extends StatelessWidget {
         textColor = colorText ?? buttonColor;
         return Ink(
           padding: padding,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             border: Border.all(
               color: buttonColor,
@@ -76,6 +83,8 @@ class ButtonComponent extends StatelessWidget {
         textColor = colorText ?? buttonColor;
         return Ink(
           padding: padding,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             borderRadius: borderRadius,
             color: buttonColor.withAlpha(70),
@@ -86,18 +95,24 @@ class ButtonComponent extends StatelessWidget {
         textColor = colorText ?? buttonColor;
         return Ink(
           padding: padding,
+          width: width,
+          height: height,
           child: _bodyButton(),
         );
       case StyleButton.plain:
         textColor = colorText ?? Theme.of(context).colorScheme.onBackground;
         return Ink(
           padding: padding,
+          width: width,
+          height: height,
           child: _bodyButton(),
         );
       default:
         textColor = colorText ?? Theme.of(context).colorScheme.onBackground;
         return Ink(
           padding: padding,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             borderRadius: borderRadius,
             color: buttonColor,
@@ -113,6 +128,7 @@ class ButtonComponent extends StatelessWidget {
     }
 
     return Row(
+      mainAxisAlignment: align,
       children: [
         if (appendIcon != null) Icon(getIcon(appendIcon!), color: textColor),
         if (text != null)

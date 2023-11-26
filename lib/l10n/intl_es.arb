@@ -1,0 +1,15 @@
+{
+  "settings": "Configuraciones",
+  "system": "Sistema",
+  "light": "Claro",
+  "day": "Dia",
+  "dark": "Oscuro",
+  "night": "Noche",
+  "theme": "Tema",
+  "themeSelector": "Selector de Tema",
+  "generalMode": "Modo Global",
+  "lightMode": "Modo Claro",
+  "darkMode": "Modo Oscuro",
+  "confirm": "Confirmar",
+  "cancel": "Cancelar"
+}

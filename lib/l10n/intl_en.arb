@@ -1,0 +1,15 @@
+{
+  "settings": "Settings",
+  "system": "System",
+  "light": "Light",
+  "day": "Day",
+  "dark": "Dark",
+  "night": "Night",
+  "theme": "Theme",
+  "themeSelector": "Theme Selector",
+  "generalMode": "General Mode",
+  "lightMode": "Light Mode",
+  "darkMode": "Dark Mode",
+  "confirm": "Confirm",
+  "cancel": "Cancel"
+}
